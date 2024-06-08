@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Tüm genişliğe yayılır */
+}
+
+.unit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.unit {
+    flex: 0 1 calc(16.66% - 20px); /* Her birim tablosunun genişliğini %16.66 yapar */
+    margin: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%; /* Tabloların kapsayıcının tüm genişliğini kaplamasını sağlar */
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.title-for-units {
+    font-size: 1.2em;
+}
+
+.staff-payroll-2 {
+     background-color: silver; 
+}
+
+.staff-payroll-3 {
+     background-color: lavender;
+}
+
+.staff-payroll-4 {
+     background-color: darkseagreen; 
+}
+
+.staff-payroll-5 {
+     background-color: powderblue;
+}
+
+.staff-payroll-6 {
+     background-color: peachpuff;
+}
+
+@media (max-width: 1600px) {
+    .unit {
+        flex: 0 1 calc(20% - 20px); /* Daha küçük ekranlarda %20 genişlikte olacak */
+    }
+}
+
+@media (max-width: 1200px) {
+    .unit {
+        flex: 0 1 calc(33.33% - 20px); /* Orta boyutlu ekranlarda her birim %33.33 genişlikte olacak */
+    }
+}
+
+@media (max-width: 768px) {
+    .unit {
+        flex: 1 1 100%; /* Küçük ekranlarda her tablo tam genişlikte olacak */
+    }
+}

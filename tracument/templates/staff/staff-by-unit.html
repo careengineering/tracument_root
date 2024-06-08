@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+
+{% block content %}
+
+    <body>
+    
+    <div class="container">
+        <h3>Personel Listesi</h3>
+            <div class="unit-container">
+                {% for unit, staff in unit_staffs.items %}
+                <div class="unit">
+                    <h4>{{ unit.name }}</h4>
+                    <table>
+                        {% for person in staff %}
+                        <tr class="staff-payroll-{{ person.payroll.id }}">
+                            <td>{{ person.name }} {{ person.surname }}
+                                {% if person.title.name != "-" %}{{ person.title.name }}{% endif %}
+                                <br>
+                                ({% for duty in person.duty.all %}{{ duty.name }} {% endfor %}) 
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endfor %}
+
+    </div>
+
+    </div>
+
+    </body>
+
+{% endblock %}
