@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Personel Listesi</h2>
+<a href="{% url 'staff-create' %}">Yeni Personel Ekle</a>
+<table>
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Birim</th>
+            <th>Unvan</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for staff in staffs %}
+        <tr>
+            <td>{{ staff.name }}</td>
+            <td>{{ staff.surname }}</td>
+            <td>{{ staff.unit.name }}</td>
+            <td>{{ staff.title.name }}</td>
+            <td><a href="{% url 'staff-update' staff.pk %}">Güncelle</a></td>
+            <td><a href="{% url 'staff-delete' staff.pk %}">Sil</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
