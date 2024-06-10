@@ -5,7 +5,8 @@
     <body>
     
     <div>
-        <h3>Personel Listesi</h3>
+        <h3>Personel Listesi <button class="btn btn-dark" onclick="window.open('{% url 'printable-staff-by-unit' %}', '_blank')">Yazdır</button> </h3>
+        
             <div class="unit-container">
                 {% for unit, staff in unit_staffs.items %}
                 <div class="unit">
@@ -24,11 +25,8 @@
                     </table>
                 </div>
                 {% endfor %}
-
+        </div>
     </div>
-
-    </div>
-
-    </body>
+</body>
 
 {% endblock %}

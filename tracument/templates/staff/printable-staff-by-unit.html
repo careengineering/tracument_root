@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personel Listesi</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="printable-content">
+        <h3>Personel Listesi</h3>
+        <div class="unit-container">
+            {% for unit, staff in unit_staffs.items %}
+            <div class="unit {% if staff|length < 7 %}vertical{% endif %}">
+                <h4>{{ unit.name }}</h4>
+                <table>
+                    {% for person in staff %}
+                    <tr class="staff-payroll-{{ person.payroll.id }}">
+                        <td>
+                            {{ person.name }} {{ person.surname }}
+                            {% if person.title.name != "-" %} / {{ person.title.short_title }}{% endif %}
+                            <br>
+                            ({% if person.duty.all %}{{ person.duty.all|join:", " }}{% endif %})
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

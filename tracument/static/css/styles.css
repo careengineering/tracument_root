@@ -1,6 +1,52 @@
-.unit.vertical {
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.unit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.unit {
+    flex: 0 1 calc(16.66% - 20px); /* %16.66 genişlik ve aradaki boşluk */
+    margin: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    display: flex;
     flex-direction: column;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
 
 .staff-payroll-2 {
      background-color: silver; 
@@ -25,18 +71,29 @@
 
 @media (max-width: 1600px) {
     .unit {
-        flex: 0 1 calc(20% - 20px);
-    }
+        flex: 0 1 calc(20% - 20px); 
 }
 
 @media (max-width: 1200px) {
     .unit {
-        flex: 0 1 calc(33.33% - 20px);
-    }
+        flex: 0 1 calc(33.33% - 20px); 
 }
 
 @media (max-width: 768px) {
     .unit {
-        flex: 1 1 100%;
+        flex: 1 1 100%; 
+    }
+}
+
+@media print {
+    .unit-container {
+        display: block;
+    }
+    .unit {
+        flex-basis: 100%;
+        page-break-inside: avoid;
+    }
+    button {
+        display: none;
     }
 }
