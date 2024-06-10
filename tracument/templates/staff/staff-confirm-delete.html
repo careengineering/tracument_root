@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Personel Sil</h2>
+<p>{{ staff.name }} {{ staff.surname }} adlı personeli silmek istediğinize emin misiniz?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Evet, Sil</button>
+    <a href="{% url 'staff-list' %}">Hayır, İptal</a>
+</form>
+{% endblock %}
