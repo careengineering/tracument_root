@@ -4,7 +4,7 @@
 
     <body>
     
-    <div class="container">
+    <div>
         <h3>Personel Listesi</h3>
             <div class="unit-container">
                 {% for unit, staff in unit_staffs.items %}
@@ -13,10 +13,11 @@
                     <table>
                         {% for person in staff %}
                         <tr class="staff-payroll-{{ person.payroll.id }}">
-                            <td>{{ person.name }} {{ person.surname }}
-                                {% if person.title.name != "-" %}{{ person.title.name }}{% endif %}
+                            <td>
+                                {{ person.name }} {{ person.surname }}
+                                {% if person.title.name != "-" %} / {{person.title.short_name}}{% endif %}
                                 <br>
-                                ({% for duty in person.duty.all %}{{ duty.name }} {% endfor %}) 
+                                ({% if person.duty.all %}{{ person.duty.all|join:", " }}{% endif %})
                             </td>
                         </tr>
                         {% endfor %}

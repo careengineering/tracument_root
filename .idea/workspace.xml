@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baf5c906-8089-4077-9cee-29836067cd34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.old/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracument/apps/staff/migrations/0002_title_short_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/apps/staff/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/apps/staff/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/apps/staff/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/apps/staff/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracument/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracument/templates/staff/staff-by-unit.html" beforeDir="false" afterPath="$PROJECT_DIR$/tracument/templates/staff/staff-by-unit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,15 +46,19 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2hblRnvBZSMU8i8eIP1SfpZWsfT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/care/WorkingOn/tracument_root/tracument/static/js"
   }
 }]]></component>
@@ -79,5 +89,8 @@
       <updated>1717870651231</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

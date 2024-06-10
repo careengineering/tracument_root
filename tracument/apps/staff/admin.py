@@ -9,8 +9,8 @@ class UnitAdmin(admin.ModelAdmin):
 
 
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
+    list_display = ("name", "short_name")
+    search_fields = ("name", "short_name")
 
 
 class DutyAdmin(admin.ModelAdmin):
@@ -21,6 +21,7 @@ class DutyAdmin(admin.ModelAdmin):
 class PayrollAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
+
 
 class StaffAdmin(admin.ModelAdmin):
     list_display = ("full_name_with_title", "unit", "payroll", "display_duty")
@@ -44,4 +45,3 @@ admin.site.register(Unit, UnitAdmin)
 admin.site.register(Title, TitleAdmin)
 admin.site.register(Duty, DutyAdmin)
 admin.site.register(Payroll, PayrollAdmin)
-
