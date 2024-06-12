@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Personel {{ form.instance.pk|yesno:"Güncelle,Ekle" }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Kaydet</button>
+    <a href="{% url 'staff-list' %}">İptal</a>
+</form>
+{% endblock %}

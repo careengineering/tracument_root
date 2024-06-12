@@ -1,13 +1,54 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from .models import Staff, Unit
-from .forms import StaffForm
+from .models import Staff, Unit, Title, Payroll, Duty
+from .forms import StaffForm, StaffFilterForm
+from django.db.models import Q
 
 # Staff List
 def staff_list(request):
-    staffs = Staff.objects.all().select_related('unit', 'payroll').prefetch_related('duty')
-    context = {'staffs': staffs}
-    return render(request, 'staff/staff_list.html', context)
+    form = StaffFilterForm(request.GET or None)
+    staffs = Staff.objects.all()
+
+    if form.is_valid():
+        query = form.cleaned_data.get('q')
+        name = form.cleaned_data.get('name')
+        surname = form.cleaned_data.get('surname')
+        unit = form.cleaned_data.get('unit')
+        title = form.cleaned_data.get('title')
+        payroll = form.cleaned_data.get('payroll')
+        duty = form.cleaned_data.get('duty')
+        is_active = form.cleaned_data.get('is_active')
+
+        if query:
+            staffs = staffs.filter(
+                Q(name__icontains=query) |
+                Q(surname__icontains=query) |
+                Q(unit__name__icontains=query) |
+                Q(title__name__icontains=query) |
+                Q(payroll__name__icontains=query) |
+                Q(duty__name__icontains=query)
+            ).distinct()
+        if name:
+            staffs = staffs.filter(name__icontains=name)
+        if surname:
+            staffs = staffs.filter(surname__icontains=surname)
+        if unit:
+            staffs = staffs.filter(unit=unit)
+        if title:
+            staffs = staffs.filter(title=title)
+        if payroll:
+            staffs = staffs.filter(payroll=payroll)
+        if duty:
+            staffs = staffs.filter(duty__id=duty.id)
+        if is_active != '':
+            staffs = staffs.filter(is_active=is_active)
+
+    context = {
+        'staffs': staffs,
+        'form': form,
+        'staff_count': staffs.count()
+    }
+    return render(request, 'staff/staff-list.html', context)
 
 # Create Staff
 def staff_create(request):
@@ -18,7 +59,7 @@ def staff_create(request):
             return redirect('staff-list')
     else:
         form = StaffForm()
-    return render(request, 'staff/staff_form.html', {'form': form})
+    return render(request, 'staff/staff-form.html', {'form': form})
 
 # Update Staff
 def staff_update(request, pk):
@@ -30,7 +71,7 @@ def staff_update(request, pk):
             return redirect('staff-list')
     else:
         form = StaffForm(instance=staff)
-    return render(request, 'staff/staff_form.html', {'form': form})
+    return render(request, 'staff/staff-form.html', {'form': form})
 
 # Delete Staff
 def staff_delete(request, pk):
@@ -38,7 +79,7 @@ def staff_delete(request, pk):
     if request.method == 'POST':
         staff.delete()
         return redirect('staff-list')
-    return render(request, 'staff/staff_confirm_delete.html', {'staff': staff})
+    return render(request, 'staff/staff-confirm-delete.html', {'staff': staff})
 
 # Staff List by Unit
 def staff_by_unit(request):

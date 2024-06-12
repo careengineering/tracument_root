@@ -60,3 +60,5 @@ class Staff(models.Model):
     class Meta:
         verbose_name = "Personel"
         verbose_name_plural = "Personeller"
+
+

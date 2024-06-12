@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Personel Listesi</h2>
+<a href="{% url 'staff-create' %}">Yeni Personel Ekle</a>
+</div>
+
+
+<form method="get" action="{% url 'staff-list' %}" class="filter-form">
+    <div class="general-search">
+        {{ form.q.label_tag }} {{ form.q }}
+        <button type="submit">Ara</button>
+        <a href="{% url 'staff-list' %}">Filtreleri Temizle</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </th>
+                <th>
+                    {{ form.surname.label_tag }}
+                    {{ form.surname }}
+                </th>
+                <th>
+                    {{ form.unit.label_tag }}
+                    {{ form.unit }}
+                </th>
+                <th>
+                    {{ form.title.label_tag }}
+                    {{ form.title }}
+                </th>
+                <th>
+                    {{ form.payroll.label_tag }}
+                    {{ form.payroll }}
+                </th>
+                <th>
+                    {{ form.duty.label_tag }}
+                    {{ form.duty }}
+                </th>
+                <th>
+                    {{ form.is_active.label_tag }}
+                    {{ form.is_active }}
+                </th>
+                <th>Güncelle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff in staffs %}
+            <tr>
+                <td>{{ staff.name }}</td>
+                <td>{{ staff.surname }}</td>
+                <td>{{ staff.unit.name }}</td>
+                <td>{{ staff.title.name }}</td>
+                <td>{{ staff.payroll.name }}</td>
+                <td>{{ staff.duty.all|join:", " }}</td>
+                <td>{{ staff.is_active|yesno:"Aktif,Pasif" }}</td>
+                <td><a href="{% url 'staff-update' staff.pk %}">Güncelle</a></td>
+                <td><a href="{% url 'staff-delete' staff.pk %}" onclick="return confirmDelete('{{ staff.name }}', '{{ staff.surname }}')">Sil</a></td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+<p>Toplam Sonuç Sayısı: {{ staff_count }}</p>
+
+
+
+{% endblock %}

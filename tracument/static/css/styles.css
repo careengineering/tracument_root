@@ -68,6 +68,25 @@ th {
      background-color: peachpuff;
 }
 
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.general-search {
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+table thead th {
+    position: relative;
+}
+
+table thead th input {
+    width: 90%;
+    box-sizing: border-box;
+}
 
 @media (max-width: 1600px) {
     .unit {
