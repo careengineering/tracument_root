@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div>
     <h2>Personel Listesi</h2>
-<a href="{% url 'staff-create' %}">Yeni Personel Ekle</a>
+    <a class="btn btn-outline-success" href="{% url 'staff-create' %}">Yeni Personel Ekle</a>
 </div>
 
 
 <form method="get" action="{% url 'staff-list' %}" class="filter-form">
     <div class="general-search">
         {{ form.q.label_tag }} {{ form.q }}
-        <button type="submit">Ara</button>
+        <button class="btn btn-outline-primary" type="submit">Ara</button>
         <a href="{% url 'staff-list' %}">Filtreleri Temizle</a>
     </div>
     <table>
@@ -58,8 +59,9 @@
                 <td>{{ staff.payroll.name }}</td>
                 <td>{{ staff.duty.all|join:", " }}</td>
                 <td>{{ staff.is_active|yesno:"Aktif,Pasif" }}</td>
-                <td><a href="{% url 'staff-update' staff.pk %}">Güncelle</a></td>
-                <td><a href="{% url 'staff-delete' staff.pk %}" onclick="return confirmDelete('{{ staff.name }}', '{{ staff.surname }}')">Sil</a></td>
+                <td><a href="{% url 'staff-update' staff.pk %}" class="btn btn-outline-warning" >Güncelle</a></td>
+                <td><a class="btn btn-outline-danger" href="{% url 'staff-delete' staff.pk %}"
+                       class="btn btn-outline-danger" onclick="return confirmDelete('{{ staff.name }}', '{{ staff.surname }}')">Sil</a></td>
 
 
             </tr>

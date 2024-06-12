@@ -1,6 +1,7 @@
 from django import forms
 from .models import Staff,Unit, Title, Payroll, Duty
 
+
 class StaffForm(forms.ModelForm):
     class Meta:
         model = Staff
@@ -19,3 +20,12 @@ class StaffFilterForm(forms.Form):
         label='Durum',
         required=False
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        for field_name in ['q', 'name', 'surname']:
+            value = cleaned_data.get(field_name)
+            if value:
+                value = value.upper()
+                cleaned_data[field_name] = value
+        return cleaned_data
