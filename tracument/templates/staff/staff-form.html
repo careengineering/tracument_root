@@ -5,7 +5,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Kaydet</button>
-    <a href="{% url 'staff-list' %}">İptal</a>
+    <button class="btn btn-success" type="submit">Kaydet</button>
+    <a class="btn btn-danger" href="{% url 'staff-list' %}">İptal</a>
 </form>
 {% endblock %}
