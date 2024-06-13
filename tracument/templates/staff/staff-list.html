@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load form_tags %}
+
 {% block content %}
 
 <div>
@@ -19,31 +21,31 @@
             <tr>
                 <th>
                     {{ form.name.label_tag }}
-                    {{ form.name }}
+                    {{ form.name|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.surname.label_tag }}
-                    {{ form.surname }}
+                    {{ form.surname|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.unit.label_tag }}
-                    {{ form.unit }}
+                    {{ form.unit|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.title.label_tag }}
-                    {{ form.title }}
+                    {{ form.title|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.payroll.label_tag }}
-                    {{ form.payroll }}
+                    {{ form.payroll|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.duty.label_tag }}
-                    {{ form.duty }}
+                    {{ form.duty|add_class:"select2" }}
                 </th>
                 <th>
                     {{ form.is_active.label_tag }}
-                    {{ form.is_active }}
+                    {{ form.is_active|add_class:"select2" }}
                 </th>
                 <th>Güncelle</th>
                 <th>Sil</th>
@@ -60,8 +62,10 @@
                 <td>{{ staff.duty.all|join:", " }}</td>
                 <td>{{ staff.is_active|yesno:"Aktif,Pasif" }}</td>
                 <td><a href="{% url 'staff-update' staff.pk %}" class="btn btn-outline-warning" >Güncelle</a></td>
-                <td><a class="btn btn-outline-danger" href="{% url 'staff-delete' staff.pk %}"
-                       class="btn btn-outline-danger" onclick="return confirmDelete('{{ staff.name }}', '{{ staff.surname }}')">Sil</a></td>
+                <td>
+                    <a class="btn btn-outline-danger" href="{% url 'staff-delete' staff.pk %}"
+                       onclick="return confirmDelete('{{ staff.name }}', '{{ staff.surname }}')">Sil</a>
+                </td>
 
 
             </tr>

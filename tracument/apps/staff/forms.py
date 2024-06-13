@@ -14,7 +14,7 @@ class StaffFilterForm(forms.Form):
     unit = forms.ModelChoiceField(queryset=Unit.objects.all(), label='Birim', required=False)
     title = forms.ModelChoiceField(queryset=Title.objects.all(), label='Unvan', required=False)
     payroll = forms.ModelChoiceField(queryset=Payroll.objects.all(), label='Kadro', required=False)
-    duty = forms.ModelChoiceField(queryset=Duty.objects.all(), label='Görev', required=False)
+    duty = forms.ModelMultipleChoiceField(queryset=Duty.objects.all(), label='Görev', required=False)
     is_active = forms.ChoiceField(
         choices=[('', 'Tümü'), (True, 'Aktif'), (False, 'Pasif')],
         label='Durum',

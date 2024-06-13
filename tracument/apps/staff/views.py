@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import Staff, Unit, Title, Payroll, Duty
 from .forms import StaffForm, StaffFilterForm
 from django.db.models import Q
+from django.contrib import messages
 
 # Staff List
 def staff_list(request):
@@ -16,7 +17,7 @@ def staff_list(request):
         unit = form.cleaned_data.get('unit')
         title = form.cleaned_data.get('title')
         payroll = form.cleaned_data.get('payroll')
-        duty = form.cleaned_data.get('duty')
+        duty_ids = form.cleaned_data.get('duty')
         is_active = form.cleaned_data.get('is_active')
 
         if query:
@@ -38,8 +39,8 @@ def staff_list(request):
             staffs = staffs.filter(title=title)
         if payroll:
             staffs = staffs.filter(payroll=payroll)
-        if duty:
-            staffs = staffs.filter(duty__id=duty.id)
+        if duty_ids:
+            staffs = staffs.filter(duty__in=duty_ids)
         if is_active != '':
             staffs = staffs.filter(is_active=is_active)
 
@@ -78,8 +79,9 @@ def staff_delete(request, pk):
     staff = get_object_or_404(Staff, pk=pk)
     if request.method == 'POST':
         staff.delete()
+        messages.success(request, 'Silme işlemi başarılı')
         return redirect('staff-list')
-    return render(request, 'staff/staff-confirm-delete.html', {'staff': staff})
+    return redirect('staff-list')
 
 # Staff List by Unit
 def staff_by_unit(request):

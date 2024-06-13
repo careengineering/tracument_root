@@ -1,9 +1,9 @@
 function confirmDelete(name, surname) {
-    return confirm(name + ' ' + surname + ' adlı personeli silmek istediğinizden emin misiniz?');
+  if (confirm(`'${name} ${surname}' adlı personeli silmek istediğinizden emin misiniz?`)) {
+      return true;
+  }
+  return false;
 }
-
-
-
 
 // form validation
 (function() {
@@ -23,10 +23,11 @@ function confirmDelete(name, surname) {
   })();
   
 
-  // Select2
+// Select2
 $(document).ready(function() {
-  $('.select2').select2({
-    theme: 'bootstrap4',
-    width: '100%'
+  $('.filter-form select').select2();
+
+  $('.filter-form select').on('change', function() {
+      $(this).closest('form').submit();
   });
 });

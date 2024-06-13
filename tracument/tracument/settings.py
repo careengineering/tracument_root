@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     #CC: forms
     'crispy_forms',
     
-
     #CC: my apps
     'apps.staff',
 
