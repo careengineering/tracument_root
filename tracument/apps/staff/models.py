@@ -1,6 +1,5 @@
 from django.db import models
 
-# For staff
 class Unit (models.Model):
     name = models.CharField(max_length=200, unique=True)
 
