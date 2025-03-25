@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #CC: my apps
     'apps.staff',
     'apps.budget',
+    'apps.ihale',
 
     "django.contrib.admin",
     "django.contrib.auth",
